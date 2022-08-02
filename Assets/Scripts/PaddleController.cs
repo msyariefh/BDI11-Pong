@@ -39,6 +39,7 @@ public class PaddleController : MonoBehaviour
     private void MovePaddle(Vector3 direction)
     {
         rb.velocity = direction;
+        Debug.Log("Kecepatan " + gameObject.name + ": " + rb.velocity.ToString());
     }
 
 }
