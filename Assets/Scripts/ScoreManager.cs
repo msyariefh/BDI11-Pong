@@ -9,10 +9,12 @@ public class ScoreManager : MonoBehaviour
     public int leftScore;
     public int rightScore;
     public BallController ball;
+    public PowerUpManager manager;
 
     public void AddLeftScore(int increments)
     {
         leftScore += increments;
+        manager.RemoveAllPowerUp();
         ball.ResetBallPosition();
         if (leftScore >= maxScore)
         {
@@ -23,6 +25,7 @@ public class ScoreManager : MonoBehaviour
     public void AddRightScore(int increments)
     {
         rightScore += increments;
+        manager.RemoveAllPowerUp();
         ball.ResetBallPosition();
         if (rightScore >= maxScore)
         {
