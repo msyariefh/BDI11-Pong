@@ -8,6 +8,7 @@ public class PUSpeedUpController : MonoBehaviour
     public Collider2D ball;
     public float magnitude;
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision != ball) return;

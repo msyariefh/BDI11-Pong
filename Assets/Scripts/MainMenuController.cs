@@ -10,4 +10,9 @@ public class MainMenuController : MonoBehaviour
         Debug.Log("Created by M Syarief Hidayatullh - BDI11");
         SceneManager.LoadScene(1);
     }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }

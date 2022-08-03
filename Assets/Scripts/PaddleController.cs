@@ -6,8 +6,10 @@ public class PaddleController : MonoBehaviour
 {
     public KeyCode UpKey;
     public KeyCode DownKey;
+    public Collider2D ball;
     public int speed;
     private Rigidbody2D rb;
+
 
     private void Start()
     {
@@ -42,4 +44,10 @@ public class PaddleController : MonoBehaviour
         //Debug.Log("Kecepatan " + gameObject.name + ": " + rb.velocity.ToString());
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider != ball) return;
+
+        collision.gameObject.GetComponent<BallController>().UpdateLastPaddleTouch(gameObject);
+    }
 }

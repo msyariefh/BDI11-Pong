@@ -7,6 +7,7 @@ public class BallController : MonoBehaviour
     public Vector2 speed;
     private Rigidbody2D rb;
     public Vector2 resetPosition;
+    private GameObject lastPaddleTouch;
 
     private void Start()
     {
@@ -23,6 +24,16 @@ public class BallController : MonoBehaviour
     public void ActivatePUSpeedUp(float magnitude)
     {
         rb.velocity *= magnitude;
+    }
+
+    public void UpdateLastPaddleTouch(GameObject paddle)
+    {
+        lastPaddleTouch = paddle;
+    }
+
+    public GameObject GetLastPaddleTouch()
+    {
+        return lastPaddleTouch;
     }
     
 }

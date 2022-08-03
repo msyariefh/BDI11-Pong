@@ -11,6 +11,8 @@ public class PowerUpManager : MonoBehaviour
     public List<GameObject> templatePowerUpList;
     private List<GameObject> powerUpList;
     public int spawnInterval;
+    public float PULongerDuration;
+    public float PUFasterDuration;
     private float timer;
 
 
@@ -66,5 +68,30 @@ public class PowerUpManager : MonoBehaviour
         {
             RemovePowerUp(powerUpList[0]);
         }
+    }
+
+    public void AddPaddleLongerEffect(GameObject go, int multiplier)
+    {
+        StartCoroutine(PULongerPaddleActivation(go.transform, multiplier));
+    }
+    IEnumerator PULongerPaddleActivation(Transform objectTransform, int multiplier) 
+    {
+        Vector3 normalScale = objectTransform.localScale;
+        objectTransform.localScale = new Vector3(normalScale.x, normalScale.y * multiplier, normalScale.z);
+        yield return new WaitForSeconds(PULongerDuration);
+        objectTransform.localScale = normalScale;
+    }
+
+    public void AddPaddleFasterEffect(GameObject go, int multiplier)
+    {
+        StartCoroutine(PUFasterPaddleActivation(go.GetComponent<PaddleController>(), multiplier));
+    }
+    IEnumerator PUFasterPaddleActivation(PaddleController controller, int multiplier)
+    {
+        int initialSpeed = controller.speed;
+        
+        controller.speed *= multiplier;
+        yield return new WaitForSeconds(PUFasterDuration);
+        controller.speed = initialSpeed;
     }
 }
